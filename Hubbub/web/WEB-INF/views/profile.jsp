@@ -70,7 +70,7 @@
             document.getElementById("content").focus();
             function charcountupdate(str) {
                 var lng = str.length;
-                document.getElementById("charcount").innerHTML = 140 - lng;
+                document.getElementById("charcount").innerHTML = 512 - lng;
             }
             charcountupdate("");
     </script>
