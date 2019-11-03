@@ -3,6 +3,7 @@ package edu.acc.jee.hubbub;
 import edu.acc.jee.hubbub.domain.*;
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -182,6 +183,7 @@ public class FrontController extends HttpServlet {
         User user = this.getSessionUser(request);
         
         String firstName = request.getParameter("firstName");
+        if(firstName == null) firstName = firstName;
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
         String timeZone = request.getParameter("timeZone");
@@ -190,9 +192,13 @@ public class FrontController extends HttpServlet {
         //String mime;
         //Integer id;
         
-        Profile 
-                
+        //Profile fn = Profile.setFirstName(firstName);
+                       
         request.setAttribute("firstName", firstName);
+        request.setAttribute("lastName", lastName);
+        request.setAttribute("email", email);
+        request.setAttribute("timeZone", timeZone);
+        request.setAttribute("biography", biography);
         if (user == null) return redirectTag + "guest";
         return "profile";
     }
