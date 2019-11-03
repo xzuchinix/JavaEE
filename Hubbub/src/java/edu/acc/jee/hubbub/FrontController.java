@@ -31,6 +31,7 @@ public class FrontController extends HttpServlet {
             case "post": destination = post(request); break;
             //case "comment": destination = comment(request);break;
             case "profile": destination = profile(request); break;
+            case "profileUpdate": destination = profileUpdate(request); break;
         }
         
         String view;
@@ -179,11 +180,10 @@ public class FrontController extends HttpServlet {
         return redirectTag + "timeline";       
     }
 
-    private String profile(HttpServletRequest request) {
+    private String profileUpdate(HttpServletRequest request) {
         User user = this.getSessionUser(request);
         
         String firstName = request.getParameter("firstName");
-        if(firstName == null) firstName = firstName;
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
         String timeZone = request.getParameter("timeZone");
@@ -191,14 +191,18 @@ public class FrontController extends HttpServlet {
         //byte[] avatar;
         //String mime;
         //Integer id;
+        if (user == null) return redirectTag + "guest";
+        return "profileUpdate";
+    }
         
-        //Profile fn = Profile.setFirstName(firstName);
-                       
-        request.setAttribute("firstName", firstName);
+    private String profile(HttpServletRequest request) {
+        User user = this.getSessionUser(request);                   
+        /*request.setAttribute("firstName", Profile);
         request.setAttribute("lastName", lastName);
         request.setAttribute("email", email);
         request.setAttribute("timeZone", timeZone);
         request.setAttribute("biography", biography);
+        */
         if (user == null) return redirectTag + "guest";
         return "profile";
     }
