@@ -1,8 +1,6 @@
 package edu.acc.jee.hubbub;
 
-import edu.acc.jee.hubbub.domain.DataService;
-import edu.acc.jee.hubbub.domain.Post;
-import edu.acc.jee.hubbub.domain.User;
+import edu.acc.jee.hubbub.domain.*;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletContext;
@@ -30,6 +28,8 @@ public class FrontController extends HttpServlet {
             case "join": destination = join(request); break;
             case "timeline": destination = timeline(request); break;
             case "post": destination = post(request); break;
+            //case "comment": destination = comment(request);break;
+            case "profile": destination = profile(request); break;
         }
         
         String view;
@@ -176,6 +176,25 @@ public class FrontController extends HttpServlet {
         }
         this.getDataService().addPost(content, user);
         return redirectTag + "timeline";       
+    }
+
+    private String profile(HttpServletRequest request) {
+        User user = this.getSessionUser(request);
+        
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String email = request.getParameter("email");
+        String timeZone = request.getParameter("timeZone");
+        String biography = request.getParameter("biography");
+        //byte[] avatar;
+        //String mime;
+        //Integer id;
+        
+        Profile 
+                
+        request.setAttribute("firstName", firstName);
+        if (user == null) return redirectTag + "guest";
+        return "profile";
     }
     
     @SuppressWarnings("unchecked")

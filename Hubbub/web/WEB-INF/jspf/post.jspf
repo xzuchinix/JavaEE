@@ -11,6 +11,7 @@
         <p>${post.content}</p>
     </div>
     <c:if test="${not empty user && not empty post.comments}">
+        <!-- <%@include file="/WEB-INF/jspf/comment.jspf"%> -->
         <p><a href="main?action=comments&post=${post.id}">View Comments</a>
     </c:if>
     <footer class="w3-container" style="background-color:#E2DDD2">
